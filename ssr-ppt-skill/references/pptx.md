@@ -6,6 +6,8 @@ Codex 桌面环境中，调用 `mcp__codex_app__load_workspace_dependencies` 获
 
 如果环境提供 `presentations:Presentations` Skill，读取其 `references/implementation.md`、`artifact_tool_docs/API_QUICK_START.md`，并在制作原生表格与图表时读取 `references/native_evidence.md`。使用 JavaScript ES modules 与 `@oai/artifact-tool`，遵循它当前的本地 authoring 和 finalization 要求；不复制过时 API，也不修改 bundled runtime。
 
+新建或美化版式时，同时读取该官方 Skill 的 `style_guidelines.md`；新建或重做封面时再读取 `references/cover_art_direction.md`。将本 Skill 的 [art-direction.md](art-direction.md) 与策划稿中的视觉概念落实到原生页面，不只遵循导出 API。用户模板和设计约束优先；没有官方 Skill 时仍按本地视觉指南完成设计，不把外部 Skill 作为必要依赖。
+
 在没有该官方能力的环境，可用项目已安装的 PptxGenJS 等原生 PPTX 工具；保留现有工具链。不要假定浏览器打印、HTML 转图片或 SVG 插入就能完成原生可编辑交付。缺少必要 authoring / render 能力时，报告具体缺项和已完成部分，不擅自安装生产依赖或降低输出要求。
 
 固定画布尺寸按模板或策划稿。单位须按当前 API 文档处理：Artifact Tool 的几何通常用 96 DPI 像素，PptxGenJS 常用英寸，字号单位也不能直接混用。字体须确认可用，中文、图表轴和表格文字分别设置。
@@ -25,6 +27,8 @@ Codex 桌面环境中，调用 `mcp__codex_app__load_workspace_dependencies` 获
 
 从 HTML 制作 PPTX 时，优先复用策划稿和数据，重建原生对象；不承诺任意 CSS、WebGL、滤镜和动态状态完全转换。若某个视觉效果难以保留，保留核心信息和所需编辑能力，记录具体差异。用户要求严格复刻但现有工具做不到时说明限制。
 
+在两种格式的代表页中先验证大标题断行、主视觉裁剪和数据图的重点。按 PPTX 实际文本度量微调位置与间距，维持阅读顺序和构图比例。照片或局部艺术素材可以与原生文字、图表组合；不因需要可编辑就省略视觉设计，也不为复刻网页效果栅格化必需对象。
+
 ## 最终文件验收
 
 官方 presentations 环境：读取其 `references/finalization.md`，用现有 finalizer 检查实际任务要求、对象、字体与文件结构，导出到新文件。按实际需要声明总页数与必须拥有原生表格 / 图表的页码，不虚构模板覆盖要求。
@@ -34,7 +38,7 @@ Codex 桌面环境中，调用 `mcp__codex_app__load_workspace_dependencies` 获
 实际验收必须包含：
 
 1. 重新读取导出的最终 PPTX，检查总页数、关键文本和必需的原生对象。
-2. 渲染最终导出文件的每一页并逐张查看；不能只看导出前的内存对象或 HTML 预览。检查字体替换、溢出、遮挡、图表数据、单位、标签、图片比例和模板匹配。
+2. 渲染最终导出文件的每一页，按 [visual-review.md](visual-review.md) 查看全套节奏和完整尺寸页面；不能只看导出前的内存对象或 HTML 预览。检查视觉焦点、中文排版、字体替换、溢出、遮挡、图表数据、单位、标签、素材裁剪和模板匹配。
 3. 在测试副本中修改至少一处代表性正文；有原生表格则改一个单元格，有数据图表则改一个值。保存、重新载入并渲染，核对实际变化。检查图表类别和数值顺序与源数据一致。
 4. 如果 PowerPoint / LibreOffice 等目标应用可用且无需新增授权，优先在目标应用打开测试副本做编辑、保存和重开。若只用库完成测试，报告为原生对象及重新导入验证，不能称为 PowerPoint 实机验收。
 5. 修复后重新导出和查看相关页；两种交付格式共用的数据变化时，两者都重新检查。
