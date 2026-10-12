@@ -115,13 +115,3 @@ ssr-ppt-skill/
 ```
 
 播放器资源应内联进入最终 HTML，不引用技能安装目录。逐页策划和两种格式的具体验收要求见对应 `references` 文档。
-
-## 方法来源
-
-综合下列公开分享，为 Codex 调整连续执行、交付格式和验收方式：
-
-- [应该是目前最强的 PPT Agent，附上完整思路分享](https://linux.do/t/topic/1782304/1)
-- [论坛佬分享的 PPT Agent 思路，马上出一个 Skill 给大家](https://linux.do/t/topic/1785157)
-- [PPT Skills 之再优化](https://linux.do/t/topic/1793628)
-
-本仓库没有打包第三方仓库代码或制作引擎，日常调用也无需重新读取上述帖子。
