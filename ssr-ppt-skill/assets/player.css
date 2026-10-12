@@ -1,0 +1,67 @@
+.ssr-player {
+  --ssr-width: 1280px;
+  --ssr-height: 720px;
+  --ssr-scale: 1;
+  height: 100vh;
+  height: 100dvh;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  background: #16191e;
+  color: #f5f5f5;
+}
+.ssr-player *, .ssr-player *::before, .ssr-player *::after {
+  box-sizing: border-box;
+}
+.ssr-stage { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
+#ssr-deck {
+  position: absolute;
+  width: var(--ssr-width);
+  height: var(--ssr-height);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(var(--ssr-scale));
+  transform-origin: center;
+  color: #171717;
+}
+.ssr-slide { position: absolute; inset: 0; overflow: hidden; background: #fff; }
+.ssr-slide[hidden] { display: none; }
+.ssr-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 12px;
+  font: 14px/1.4 system-ui, sans-serif;
+}
+.ssr-controls button {
+  min-height: 40px;
+  border: 1px solid #717781;
+  border-radius: 6px;
+  padding: 6px 12px;
+  background: #272d36;
+  color: #fff;
+  cursor: pointer;
+}
+.ssr-controls button:disabled { opacity: .45; cursor: default; }
+.ssr-controls button:focus-visible { outline: 2px solid #8bbcff; outline-offset: 2px; }
+.ssr-controls output { min-width: 72px; text-align: center; }
+[data-ssr-status]:empty { display: none; }
+@media print {
+  @page { size: 13.333333in 7.5in; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  .ssr-player { display: block; height: auto; background: transparent; }
+  .ssr-stage { overflow: visible; }
+  #ssr-deck { position: static; transform: none; width: var(--ssr-width); height: auto; }
+  .ssr-slide, .ssr-slide[hidden] {
+    display: block;
+    position: relative;
+    width: var(--ssr-width);
+    height: var(--ssr-height);
+    break-after: page;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .ssr-slide:last-child { break-after: auto; }
+  .ssr-controls { display: none; }
+}
